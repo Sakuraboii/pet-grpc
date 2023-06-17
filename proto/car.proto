@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package homework;
+option go_package = "./;pb";
+
+service CarService {
+  // Создает новую запись
+  rpc CreateCar (CreateCarRequest) returns (CreateCarResponse) {}
+  // Получение Машины
+  rpc GetCar (GetCarRequest) returns (GetCarResponse) {}
+  // Удаляет запись по ID
+  rpc DeleteCar (DeleteCarRequest) returns (DeleteCarResponse) {}
+  // Обновление машины
+  rpc UpdateCar (UpdateCarRequest) returns (UpdateCarResponse) {}
+}
+
+message UpdateCarRequest {
+  Car car = 1;
+}
+
+message UpdateCarResponse{
+  bool ok = 2;
+}
+
+message CreateCarRequest {
+  int64 user_id = 1;
+  string model = 2;
+}
+
+message CreateCarResponse {
+  int64 id = 1;
+}
+
+message GetCarRequest {
+  int64 id = 1;
+}
+
+message Car {
+  int64 id = 1;
+  string model = 2;
+  int64 user_id = 3;
+}
+
+message GetCarResponse {
+  Car car = 1;
+}
+
+message DeleteCarRequest {
+  int64 id = 1;
+}
+
+message DeleteCarResponse {
+  bool ok = 2;
+}

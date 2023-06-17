@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package homework;
+option go_package = "./;pb";
+
+
+service UserService {
+  // Создает новую запись
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
+  // Получение Пользователя
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
+  // Удаляет запись по ID
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse) {}
+  // Обновление пользователя
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
+}
+
+message UpdateUserRequest{
+  User user = 1;
+}
+
+message UpdateUserResponse{
+  bool ok = 2;
+}
+
+message CreateUserRequest {
+  string name = 1;
+}
+
+message CreateUserResponse {
+  int64 id = 1;
+  string name = 2;
+}
+
+message GetUserRequest {
+  int64 id = 1;
+}
+
+message User {
+  int64 id = 1;
+  string name = 2;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message DeleteUserRequest {
+  int64 id = 1;
+}
+
+message DeleteUserResponse {
+  bool ok = 2;
+}
